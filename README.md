@@ -82,12 +82,16 @@ pip install python-speech-features
 conda list
 ```
 
-5. Install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+5. Register a [GitHub account](https://github.com).
 
-6. (_If using Windows, launch Git Bash._) After registering a GitHub account online, configure _git_ (_Hint: you can always use the_ **git --help** _command_):
+6. Fork (_copy_) the original [_morpheus_ repository](https://github.com/SRBNM/morpheus) by clicking on the **Fork** button in the top right corner.
+
+7. Install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+
+8. (_If using Windows, launch Git Bash._) Configure _git_ (_Hint: you can always use the_ **git --help** _command_):
 ```
 git config --global user.email "<email_address>"
-(e.g: <email_address> = smihalache@gmail.com   <--- use your main email address)
+(e.g: <email_address> = smihalache@gmail.com   <--- use the same email as for your GitHub account)
 git config --global user.name "<name>"
 (e.g: <name> = SRBNM   <--- use the same name as for your GitHub account)
 ```
@@ -98,19 +102,23 @@ cd <path>
 (e.g: cd "/c/summer_project/")
 ```
 
-8. Clone the _morpheus_ repository:
+8. Clone (_download_) the **forked** _morpheus_ repository (_your copy_) and add a remote (_alias_) to the **original** one (_Hint:_ **origin** _is the name of the remote of_ **your** _repository_):
 ```
-git clone https://github.com/SRBNM/morpheus.git
+git clone https://github.com/SRBNM2/morpheus.git
+git remote add morpheus https://github.com/SRBNM/morpheus.git
+git remote -v
 ```
 
-9. Switch to the repository directory (_Hint: Notice the_ **(master)** _marker_):
+9. Switch to your repository directory (_Hint: Notice the_ **(master)** _marker_):
 ```
 cd morpheus
 ```
 
-10. (Update your master clone and) Create, checkout (switch to) and push (upload) your own branch (_Hint:_ **origin** _is the name of the remote \[alias\] of the repository_):
+10. 
+
+10. (_Update your fork._) Create, checkout (_switch to_) and push (_upload_) your own branch :
 ```
-git pull
+git pull morpheus master
 git branch <new_branch_name>
 git checkout <new_branch_name>
 git push origin <new_branch_name>
