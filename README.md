@@ -84,7 +84,7 @@ conda list
 
 5. Register a [GitHub account](https://github.com).
 
-6. Fork (_copy_) the original [_morpheus_ repository](https://github.com/SRBNM/morpheus) by clicking on the **Fork** button in the top right corner.
+6. Fork (_copy_) the **original** [_morpheus_ repository](https://github.com/SRBNM/morpheus) by clicking on the **Fork** button in the top right corner.
 
 7. Install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
