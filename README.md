@@ -4,7 +4,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
 
 ### Project milestones:
 
-0. Set up a work environment ("[**Project setup**](https://github.com/SRBNM/morpheus/tree/master#project-setup)" section).
+0. Set up a work environment ("[**Project setup**](https://github.com/SRBNM/morpheus/tree/master#project-setup)" section) and get the hang of the work procedure 
 
 1. Build a database of normal speech and (authentic) growled speech (_NAG_).
 
@@ -20,10 +20,13 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
 
 1. NAG:
    - The final database will contain 3 speech classes: Normal and Growled_A (authentic) + Growled_M (morphed).
-   - For the first two classes, at least 10 speakers must be used.
-   - For each speaker, at least 10 utterances must be recorded.
-   - All files must be recorded at 16 kHz sampling rate, using PCM format, and must be at least 3 seconds long.
-   - Additional information to log: speaker id#, gender, age, and musical training (especially concerning growling vocals).
+   - For the first two classes, 10 speakers must be used.
+   - For each speaker, 10 utterances must be recorded (the same for all speakers).
+   - All files must be recorded at 16 kHz sampling rate, using PCM format (_.wav_), and must be around 3 seconds long.
+   - As a software example, [Audacity](https://www.audacityteam.org/download) can be used.
+   - Each audio file should be saved using the following naming convention: "CCSSUU.wav", where CC is the class identifier ('NN' or 'GA'), SS is the speaker number ('01' ... '10') and UU is the utterance number ('01' ... '10'); e.g: _NN0201.wav_ -- Normal speech, 2nd speaker's 1st utterance.
+   - For each audio file, an identically named Excel file (_.xlsx_) must be created, in which to log additional information: speaker gender, age, and musical training (especially concerning growling vocals).
+   - After applying the voice morphing algorithm, the processed audio data will be saved in files following the same naming convention, but with the 'GM' class identifier.
 
 2. VMA:
    - Complete implementation (**_details to follow_**).
@@ -121,21 +124,31 @@ spyder
 
 13. From the **Project** menu, select **New Project...**. Select **Existing directory** and browse for the _<path>_ used at step 11 (e.g: "_C:\summer_project\morpheus_"). Create a new file and save it with the **.py** extension (e.g: **main.py**).
 
-14. Update your fork:
+14. Update your **remote** fork with all **local** changes:
 ```
 git checkout master
 git add --all
-git commit -m "<a_very_short_description>"
-(e.g: <a_very_short_description> = first update   <--- to explain what is being changed)
+git commit -m "<short_description>"
+(e.g: <short_description> = first update   <--- to explain what is being changed)
 git push origin master
 ```
 
-15. Initiate a **_pull request_** by navigating to the **original** _morpheus_ repository in your browser and clicking on the **New pull request** button.
-(<new_branch_name> = stefaniad | alexg | narcisag | anam | mariann   <--- use the corresponding name for your branch)
+### Work procedure
+
+1. Update your **local** fork from the **original** repository:
+```
+cd <path>/morpheus
+git pull morpheus master
+```
+
+2. Activate the Anaconda _morpheus_ virtual environment and launch Spyder.
+
+3. After finishing coding, update your **remote** fork with all **local** changes.
 
 ### Software and code resources:
 
-- Anaconda3 (with Spyder IDE).
+- Anaconda3 (with Spyder IDE)
+- GitHub
 - TensorFlow
 - NumPy
 - SciPy
