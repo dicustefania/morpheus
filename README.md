@@ -114,7 +114,7 @@ git remote -v
 cd morpheus
 ```
 
-12. Launch Spyder:
+12. Launch Spyder from the Anaconda virtual environment (_morpheus_):
 ```
 spyder
 ```
