@@ -4,7 +4,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
 
 ### Project milestones:
 
-0. Set up a work environment ("**Project set up**" section).
+0. Set up a work environment ("[**Project setup**](https://github.com/SRBNM/morpheus/tree/master#project-setup)" section).
 
 1. Build a database of normal speech and (authentic) growled speech (_NAG_).
 
@@ -84,7 +84,40 @@ conda list
 
 5. Install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
-6. (_If using Windows, launch Git Bash._) 
+6. (_If using Windows, launch Git Bash._) After registering a GitHub account online, configure _git_ (_Hint: you can always use the_ **git --help** _command_):
+```
+git config --global user.email "<email_address>"
+(e.g: <email_address> = smihalache@gmail.com   <--- use your main email address)
+git config --global user.name "<name>"
+(e.g: <name> = SRBNM   <--- use the same name as for your GitHub account)
+```
+
+7. Navigate to your desired work folder path (_Hint: you can always use the_ **ls -a** _command to list all files in the current directory_):
+```
+cd <path>
+(e.g: cd "/c/summer_project/")
+```
+
+8. Clone the _morpheus_ repository:
+```
+git clone https://github.com/SRBNM/morpheus.git
+```
+
+9. Switch to the repository directory (_Hint: Notice the_ **(master)** _marker_):
+```
+cd morpheus
+```
+
+10. (Update your master clone and) Create, checkout (switch to) and push (upload) your own branch (_Hint:_ **origin** _is the name of the remote \[alias\] of the repository_):
+```
+git pull
+git branch <new_branch_name>
+git checkout <new_branch_name>
+git push origin <new_branch_name>
+(<new_branch_name> = stefaniad | alexg | narcisag | anam | mariann   <--- use the corresponding name for your branch)
+```
+
+11. 
 
 ### Software and code resources:
 
