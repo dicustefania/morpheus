@@ -36,7 +36,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
    - In separate trials, it will be trained and tested using the following extracted feature sets:
      * MFCC
      * MFCC and delta coefficients
-     * MFCC, delta coefficients, and delta-delta coefficients.
+     * MFCC, delta coefficients and delta-delta coefficients
 
 4. **DNN**:
    - The proposed system will be a deep feedforward (dense) neural network using multilayer perceptrons ([MLP](https://keras.io/layers/core/)) (**_details to follow_**).
