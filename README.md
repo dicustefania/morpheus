@@ -4,21 +4,21 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
 
 ### Project milestones:
 
-0. Set up a work environment ("[**Project setup**](https://github.com/SRBNM/morpheus/tree/master#project-setup)" section) and get the hang of the work procedure 
+0. Set up a work environment ("[**Project setup**](https://github.com/SRBNM/morpheus/tree/master#project-setup)" section) and get the hang of the work procedure ("[**Work procedure**](https://github.com/SRBNM/morpheus/tree/master#work-procedure)" section).
 
-1. Build a database of normal speech and (authentic) growled speech (_NAG_).
+1. Build a database of normal speech and (authentic) growled speech (**NAG**).
 
-2. Implement the voice morphing algorithm (_VMA_) proposed in \[1\].
+2. Implement the voice morphing algorithm (**VMA**) proposed in \[1\].
 
-3. Develop a SVM classifier (_Baseline_), to distinguish between authentic and morphed growls.
+3. Develop a SVM classifier (**Baseline**), to distinguish between authentic and morphed growls.
 
-4. Develop a deep feedforward neural network classifier (_DNN_), to distinguish between authentic and morphed growls.
+4. Develop a deep feedforward neural network classifier (**DNN**), to distinguish between authentic and morphed growls.
 
 [\[1\] J. Bonada and M. Blaauw, "Generation of growl-type voice qualities by spectral morphing," in Proc. of the 2013 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Vancouver, Canada, pp. 6910-6914, May 2013](https://ieeexplore.ieee.org/abstract/document/6639001)
 
 ### Project details:
 
-1. NAG:
+1. **NAG**:
    - The final database will contain 3 speech classes: Normal and Growled_A (authentic) + Growled_M (morphed).
    - For the first two classes, 10 speakers must be used.
    - For each speaker, 10 utterances must be recorded (the same for all speakers).
@@ -28,17 +28,17 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
    - For each audio file, an identically named Excel file (_.xlsx_) must be created, in which to log additional information: speaker gender, age, and musical training (especially concerning growling vocals).
    - After applying the voice morphing algorithm, the processed audio data will be saved in files following the same naming convention, but with the 'GM' class identifier.
 
-2. VMA:
+2. **VMA**:
    - Complete implementation (**_details to follow_**).
 
-3. Baseline:
+3. **Baseline**:
    - The baseline system will consist of a [SVM](https://scikit-learn.org/stable/modules/svm.html) classifier (**_details to follow_**).
    - In separate trials, it will be trained and tested using the following extracted feature sets:
      * MFCC
      * MFCC and delta coefficients
      * MFCC, delta coefficients, and delta-delta coefficients.
 
-4. DNN:
+4. **DNN**:
    - The proposed system will be a deep feedforward (dense) neural network using multilayer perceptrons ([MLP](https://keras.io/layers/core/)) (**_details to follow_**).
    - The extracted features will be the same as in the three baseline sets (in separate trials).
 
