@@ -96,36 +96,42 @@ git config --global user.name "<name>"
 (e.g: <name> = SRBNM   <--- use the same name as for your GitHub account)
 ```
 
-7. Navigate to your desired work folder path (_Hint: you can always use the_ **ls -a** _command to list all files in the current directory_):
+9. Navigate to your desired work folder path (_Hint: you can always use the_ **ls -a** _command to list all files in the current directory_):
 ```
 cd <path>
 (e.g: cd "/c/summer_project/")
 ```
 
-8. Clone (_download_) the **forked** _morpheus_ repository (_your copy_) and add a remote (_alias_) to the **original** one (_Hint:_ **origin** _is the name of the remote of_ **your** _repository_):
+10. Clone (_download_) the **forked** _morpheus_ repository (_your copy_) and add a remote (_alias_) to the **original** one (_Hint:_ **origin** _is the name of the remote of_ **your** _repository_):
 ```
 git clone https://github.com/SRBNM2/morpheus.git
 git remote add morpheus https://github.com/SRBNM/morpheus.git
 git remote -v
 ```
 
-9. Switch to your repository directory (_Hint: Notice the_ **(master)** _marker_):
+11. Switch to your repository directory (_Hint: Notice the_ **(master)** _marker_):
 ```
 cd morpheus
 ```
 
-10. 
-
-10. (_Update your fork._) Create, checkout (_switch to_) and push (_upload_) your own branch :
+12. Launch Spyder:
 ```
-git pull morpheus master
-git branch <new_branch_name>
-git checkout <new_branch_name>
-git push origin <new_branch_name>
+spyder
+```
+
+13. From the **Project** menu, select **New Project...**. Select **Existing directory** and browse for the _<path>_ used at step 11 (e.g: "_C:\summer_project\morpheus_"). Create a new file and save it with the **.py** extension (e.g: **main.py**).
+
+14. Update your fork:
+```
+git checkout master
+git add --all
+git commit -m "<a_very_short_description>"
+(e.g: <a_very_short_description> = first update   <--- to explain what is being changed)
+git push origin master
+```
+
+15. Initiate a **_pull request_** by navigating to the **original** _morpheus_ repository in your browser and clicking on the **New pull request** button.
 (<new_branch_name> = stefaniad | alexg | narcisag | anam | mariann   <--- use the corresponding name for your branch)
-```
-
-11. 
 
 ### Software and code resources:
 
