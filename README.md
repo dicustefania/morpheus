@@ -120,10 +120,10 @@ cd morpheus
 
 12. Launch Spyder from the Anaconda virtual environment (_morpheus_):
 ```
-spyder
+spyder &
 ```
 
-13. From the **Project** menu, select **New Project...**. Select **Existing directory** and browse for the _<path>_ used at step 11 (e.g: "_C:\summer_project\morpheus_"). Create a new file and save it with the **.py** extension (e.g: **main.py**).
+13. From the **Project** menu, select **New Project...**. Select **Existing directory** and browse for the _path_ used at step 11 (e.g: "_C:\summer_project\morpheus_"). Create a new file and save it with the **.py** extension (e.g: **main.py**).
 
 14. Update your **remote** fork with all **local** changes:
 ```
@@ -145,7 +145,7 @@ git pull morpheus master
 2. Activate the Anaconda _morpheus_ virtual environment and launch Spyder.
 ```
 conda activate morpheus
-spyder
+spyder &
 ```
 
 3. After finishing coding, update your **remote** fork with all **local** changes.
