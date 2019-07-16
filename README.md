@@ -102,12 +102,13 @@ git config --global user.name "<name>"
 9. Navigate to your desired work folder path (_Hint: you can always use the_ **ls -a** _command to list all files in the current directory_):
 ```
 cd <path>
-(e.g: cd "/c/summer_project/")
+(e.g: path = "/c/summer_project/")
 ```
 
 10. Clone (_download_) the **forked** _morpheus_ repository (_your copy_) and add a remote (_alias_) to the **original** one (_Hint:_ **origin** _is the name of the remote of_ **your** _repository_):
 ```
-git clone https://github.com/SRBNM2/morpheus.git
+git clone https://github.com/<username>/morpheus.git
+(e.g: <username> = GreuceanuSfarmafalci   <--- your GitHub account username)
 git remote add morpheus https://github.com/SRBNM/morpheus.git
 git remote -v
 ```
@@ -142,8 +143,18 @@ git pull morpheus master
 ```
 
 2. Activate the Anaconda _morpheus_ virtual environment and launch Spyder.
+```
+conda activate morpheus
+spyder
+```
 
 3. After finishing coding, update your **remote** fork with all **local** changes.
+```
+git checkout master
+git add --all
+git commit -m "<short_description>"
+git push origin master
+```
 
 ### Software and code resources:
 
