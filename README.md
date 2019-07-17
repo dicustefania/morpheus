@@ -6,54 +6,100 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
 
 0. Set up a work environment ("[**Project setup**](https://github.com/SRBNM/morpheus/tree/master#project-setup)" section) and get the hang of the work procedure ("[**Work procedure**](https://github.com/SRBNM/morpheus/tree/master#work-procedure)" section).
 
-1. Build a database of normal speech and (authentic) growled speech (**NAG**).
+1. Build a database of clean singing voice and authentic growled singing voice recordings (**CAGs**).
 
 2. Implement the voice morphing algorithm (**VMA**) proposed in \[1\].
 
-3. Develop a SVM classifier (**Baseline**), to distinguish between authentic and morphed growls.
+3. From the authentic and morphed growled recordings, extract the features (**Features**) used for classification, according to 3 proposed feature sets.
 
-4. Develop a deep feedforward neural network classifier (**DNN**), to distinguish between authentic and morphed growls.
+4. Develop a SVM classifier (**Baseline**), to distinguish between authentic and morphed growls.
+
+5. Develop a deep feedforward neural network classifier (**DNN**), to distinguish between authentic and morphed growls.
 
 [\[1\] J. Bonada and M. Blaauw, "Generation of growl-type voice qualities by spectral morphing," in Proc. of the 2013 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Vancouver, Canada, pp. 6910-6914, May 2013](https://ieeexplore.ieee.org/abstract/document/6639001)
 
 ### Project details:
 
-1. **NAG**:
-   - The final database will contain 3 speech classes: Normal and Growled_A (authentic) + Growled_M (morphed).
-   - For the first two classes, 10 speakers must be used.
-   - For each speaker, 10 utterances must be recorded (the same for all speakers).
-   - All files must be recorded at 16 kHz sampling rate, using PCM format (_.wav_), and must be around 3 seconds long.
-   - As a software example, [Audacity](https://www.audacityteam.org/download) can be used.
-   - Each audio file should be saved using the following naming convention: "CCSSUU.wav", where CC is the class identifier ('NN' or 'GA'), SS is the speaker number ('01' ... '10') and UU is the utterance number ('01' ... '10'); e.g: _NN0201.wav_ -- Normal speech, 2nd speaker's 1st utterance.
-   - For each audio file, an identically named Excel file (_.xlsx_) must be created, in which to log additional information: speaker gender, age, and musical training (especially concerning growling vocals).
+1. **CAGs**:
+   - The final database will contain 3 singing voice classes: Clean and Growled_A (_authentic_) + Growled_M (_morphed_).
+   - For the first two classes, 2 singers must be used.
+   - For each singer, 50 sustained vocalizations ("_Aaahs_ and _Ooohs_") must be recorded (the same for both singers).
+   - All files must be single-channel (_mono_) recorded at 16 kHz sampling rate, using PCM format (_.wav_), and be around 2 seconds long. For example, [Audacity](https://www.audacityteam.org/download) can be used as the recording software.
+   - Each audio file should be saved using the following naming convention: **CCSVV.wav**, where **CC** is the class identifier ('CC' or 'GA'), **SS** is the singer ID number ('1' or '2') and **VV** is the vocalization ID number ('01' ... '50'); e.g: _CC123.wav_ -- Clean singing by the 1st singer, 23rd vocalization.
+   - For each singer, an Excel file (_.xlsx_) must be created, in which to log additional information: singer gender, age, and musical training (especially concerning growling vocals).
    - After applying the voice morphing algorithm, the processed audio data will be saved in files following the same naming convention, but with the 'GM' class identifier.
 
 2. **VMA**:
-   - Complete implementation (**_details to follow_**).
+   - A general outline of the algorithm is given below. Please refer to the original paper for details.
+     1. For the first **GA** recording, [read](https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.io.wavfile.read.html) it from the disk and extract a (_at least 1 second_) long segment containing only the vocalization (**_morph sample_**).
+     2. Add [zero-padding](https://docs.scipy.org/doc/numpy/reference/generated/numpy.pad.html) (using [appropriately many](https://ccrma.stanford.edu/~jos/sasp/Bias_Parabolic_Peak_Interpolation.html) samples).
+     3. Compute the [FFT](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.fft.html) (using [appropriately many](file:///C:/Users/SRBN/Downloads/Cap6_PDS-D_Burileanu-2019.pdf) samples).
+     4. Find the [peaks](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html) of the magnitude spectrum.
+     5. Implement and use [quadratic (_parabolic_) interpolation](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html) to estimate the fundamental frequency (FF) and the magnitudes of the FF and of the harmonics.
+     6. Implement and use [linear interpolation](https://ccrma.stanford.edu/~jos/pasp/Linear_Interpolation.html) to estimate the [phases](https://ccrma.stanford.edu/~jos/sasp/Phase_Interpolation_Peak.html) of the FF and of the harmonics from the phase spectrum.
+     7. Read from the disk the first **CC** recording and divide it into 25 ms long frames, using Hamming windowing (**_input voice_**).
+     8. Repeat steps (2)-(6) for a frame obtained in step (7).
+     9. [Resample](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample_poly.html) the segment from step (1) with the factor given by the ratio between the FF of the _input voice_ and that of the _morph sample_. For the FIR filter, use a Hamming window, an order of 80, and the [appropriate cut-off frequency](file:///C:/Users/SRBN/Downloads/Cap_4-TaPDS_Ian_2019.pdf).
+     10. Calculate the mapping indices, using equation (1) from [1].
+     11. Calculate the frequency shifts, using equation (3) from [1].
+     12. Calculate the gains as the ratios between the magnitudes of the _input voice_ harmonics and those of the _morph sample_ harmonics.
+     13. Calculate the phase corrections as the ratios between the phases of the _input_ voice harmonics and those of the _morph sample_ harmonics.
+     14. Apply the harmonic mapping and filtering, using equation (2) from [1].
+     15. Apply spectral mixing, using [linear interpolation](https://ccrma.stanford.edu/~jos/pasp/Linear_Interpolation.html), between the _input voice_ frame spectrum and the spectrum obtained in step (14).
+     16. Compute the [IFFT](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.ifft.html) of the spectrum obtained in step (15). This is the current frame of the newly synthesized morphed growl recording.
+     17. Repeat steps (8)-(16) for the next frame obtained in step (7).
+     18. Concatenate all the frames obtained in step (17). This is the newly synthesized morphed growl recording. [Write](https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.wavfile.write.html) it to disk as a _.wav_ file.
+     18. Repeat steps (1)-(6) for the next recording in the **GA* class, and steps (7)-(17) for the next one in the **CC** class. **Always make sure to use the corresponding CC and GA recordings!** You should now have 50 **GM** class recordings.
 
-3. **Baseline**:
-   - The baseline system will consist of a [SVM](https://scikit-learn.org/stable/modules/svm.html) classifier (**_details to follow_**).
-   - In separate trials, it will be trained and tested using the following extracted feature sets:
-     * MFCC
-     * MFCC and delta coefficients
-     * MFCC, delta coefficients and delta-delta coefficients
+3. **Features**:
+   - For each audio recording in the **GA** and **GM** classes, the following processing steps will be applied:
+     - pre-processing:
+       - framing: 25 ms duration, 10 ms steps
+     - frame-wise feature extraction:
+       - MFCCs: 26 filters between 80 Hz and 8 kHz, 13 coefficients, 512 FFT points, Hamming windowing function
+       - delta coefficients: +/- 1 frame
+       - delta-delta coefficients: +/- 1 frame
+     - sentence-wise feature extraction:
+       - averaging (_mean_) the frame-wise features over the entire sentence
+   - Using the sentence-wise features, the following 3 datasets will be created:
+     - Set_1: MFCCs
+     - Set_2: MFCCs and delta coefficients
+     - Set_3: MFCCs, delta coefficients and delta-delta coefficients
 
-4. **DNN**:
-   - The proposed system will be a deep feedforward (dense) neural network using multilayer perceptrons ([MLP](https://keras.io/layers/core/)) (**_details to follow_**).
-   - The extracted features will be the same as in the three baseline sets (in separate trials).
+4. **Baseline**:
+   - The baseline system will consist of a [SVM](https://scikit-learn.org/stable/modules/svm.html) classifier.
+   - Implementation will be done using the scikit-learn [SVC](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) class.
+   - Two hyperparameters will be adjusted during validation:
+     - the kernel function: linear and RBF (radial basis function)
+     - the C parameter (regularization parameter)
+   - All other parameters will be used with their default values.
+   - In separate trials, experiments will be done using each of the 3 feature datasets previously described.
+   
+5. **DNN**:
+   - The proposed system will be a deep feedforward (dense) neural network using multilayer perceptrons ([MLP](https://keras.io/layers/core/)).
+   - Implementation will be done using the Keras [Sequential](https://keras.io/models/sequential/) model.
+   (**_details to follow_**).
+   - In separate trials, experiments will be done using each of the 3 feature datasets previously described.
 
-5. Other notes:
+6. Other notes:
    - The train/dev/test split will be 40%/30%/30%.
-   - The metrics used for performance assessment and comparison will be: Accuracy, Precision and Avg. Precision, Recall and Avg. Recall, F1-measure and Avg. F1-measure.
-   - In addition, the following graphical results are required: confusion matrices, and validation error and accuracy evolution in time.
+   - The metrics used for performance assessment and comparison will be:
+     - accuracy
+     - precision and avg. precision
+     - recall and avg. recall
+     - F1-measure and avg. F1-measure
+   - In addition, the following graphical results are required:
+     - confusion matrices
+     - validation error vs. epoch
+     - validation accuracy vs. epoch
    - In the final stage, a **4-page** paper (using the [IEEE Word template](https://www.ieee.org/content/dam/ieee-org/ieee/web/org/conferences/Conference-template-A4.doc)) will be written to clearly, convincingly, and eloquently present the project and how it relates to the wider scope of voice morphing and machine learning research.
    - Structure:
      * Abstract
      * S1. Introduction
-     * S2. Proposed System Architecture
+     * S2. System Architecture
      * S3. Implementation Details
-     * S3.1. The NAG Database
-     * S3.2. Extracted Features
+     * S3.1. The CAGs Database
+     * S3.2. Feature Extraction
      * S3.3. Implementation Details
      * S4. Experimental Setup and Results
      * S4.1. Experimental Setup Details
