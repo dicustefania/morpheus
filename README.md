@@ -6,7 +6,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
 
 0. Set up a work environment ("[**Project setup**](https://github.com/SRBNM/morpheus/tree/master#project-setup)" section) and get the hang of the work procedure ("[**Work procedure**](https://github.com/SRBNM/morpheus/tree/master#work-procedure)" section).
 
-1. Build a database of clean singing voice and authentic [growled](https://youtu.be/4VQUZLWVo88?t=585) singing voice recordings (**CAGs**).
+1. Build a database of clean singing voice and authentic [growled](https://youtu.be/4VQUZLWVo88?t=585) singing voice recordings (**CAGsDB**).
 
 2. Implement the voice morphing algorithm (**VMA**) proposed in \[1\].
 
@@ -20,7 +20,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
 
 ### Project details:
 
-1. **CAGs**:
+1. **CAGsDB**:
    - The final database will contain 3 singing voice classes: Clean and Growled_A (_authentic_) + Growled_M (_morphed_).
    - For each of the first two classes, 2 singers (the same) must be used.
    - For each singer, 50 sustained vocalizations ("_Aaahs_ and _Ooohs_") must be recorded (the same for both singers).
@@ -100,7 +100,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
      * S1. Introduction
      * S2. System Architecture
      * S3. Implementation Details
-     * S3.1. The CAGs Database
+     * S3.1. The Clean And Growled Singing Database (CAGsDB)
      * S3.2. Feature Extraction
      * S3.3. Implementation Details
      * S4. Experimental Setup and Results
