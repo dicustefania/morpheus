@@ -49,7 +49,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
      16. Compute the [IFFT](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.ifft.html) of the spectrum obtained in step (15). This is the current frame of the newly synthesized morphed growl recording.
      17. Repeat steps (8)-(16) for the next frame obtained in step (7).
      18. Concatenate all the frames obtained in step (17). This is the newly synthesized morphed growl recording. [Write](https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.wavfile.write.html) it to disk as a _.wav_ file.
-     18. Repeat steps (1)-(6) for the next recording in the **GA* class, and steps (7)-(17) for the next one in the **CC** class. **Always make sure to use the corresponding CC and GA recordings!** You should now have 50 **GM** class recordings.
+     18. Repeat steps (1)-(6) for the next recording in the **GA* class, and steps (7)-(17) for the next one in the **CC** class. **Always make sure to use the corresponding CC and GA recordings!** You should now have 100 **GM** class recordings.
 
 3. **Features**:
    - For each audio recording in the **GA** and **GM** classes, the following processing steps will be applied:
@@ -65,6 +65,8 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
      - Set_1: MFCCs
      - Set_2: MFCCs and delta coefficients
      - Set_3: MFCCs, delta coefficients and delta-delta coefficients
+   - Each feature in each dataset will be normalized using the [z-score transform](https://en.wikipedia.org/wiki/Standard_score#Calculation) over the 200 samples of the two classes.
+   - The final datasets will be saved to disk in Excel (_.xlsx_) format, using [Pandas](https://xlsxwriter.readthedocs.io/working_with_pandas.html).
 
 4. **Baseline**:
    - The baseline system will consist of a [SVM](https://scikit-learn.org/stable/modules/svm.html) classifier.
@@ -115,7 +117,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
 
 2. (_If using Windows, launch Anaconda Prompt as Admin._) Set up a new virtual environment, named _morpheus_:
 ```
-conda create -n morpheus python=3.6 tensorflow keras scikit-learn pandas matplotlib graphviz spyder
+conda create -n morpheus python=3.6 tensorflow keras scikit-learn pandas xlsxwriter matplotlib graphviz spyder
 conda info --envs
 ```
 
@@ -211,6 +213,7 @@ git push origin master
 - SciPy
 - SciKit Learn
 - Pandas
+- Xlsxwriter
 - Matplotlib
 - h5py
 - Graphviz
