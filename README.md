@@ -33,13 +33,13 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
    - A general outline of the algorithm is given below. Please refer to the original paper for details.
      1. For the first **GA** recording, [read](https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.io.wavfile.read.html) it from the disk and extract a (_at least 1 second_) long segment containing only the vocalization (**_morph sample_**).
      2. Add [zero-padding](https://docs.scipy.org/doc/numpy/reference/generated/numpy.pad.html) (using [appropriately many](https://ccrma.stanford.edu/~jos/sasp/Bias_Parabolic_Peak_Interpolation.html) samples).
-     3. Compute the [FFT](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.fft.html) (using [appropriately many](file:///C:/Users/SRBN/Downloads/Cap6_PDS-D_Burileanu-2019.pdf) samples).
+     3. Compute the [FFT](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.fft.html) (using [appropriately many](https://electronica.curs.pub.ro/2018/pluginfile.php/35936/mod_folder/content/0/Cap6_PDS-D_Burileanu-2019.pdf?forcedownload=1) samples).
      4. Find the [peaks](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html) of the magnitude spectrum.
      5. Implement and use [quadratic (_parabolic_) interpolation](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html) to estimate the fundamental frequency (FF) and the magnitudes of the FF and of the harmonics.
      6. Implement and use [linear interpolation](https://ccrma.stanford.edu/~jos/pasp/Linear_Interpolation.html) to estimate the [phases](https://ccrma.stanford.edu/~jos/sasp/Phase_Interpolation_Peak.html) of the FF and of the harmonics from the phase spectrum.
      7. Read from the disk the first **CC** recording and divide it into 25 ms long frames, using Hamming windowing (**_input voice_**).
      8. Repeat steps (2)-(6) for a frame obtained in step (7).
-     9. [Resample](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample_poly.html) the segment from step (1) with the factor given by the ratio between the FF of the _input voice_ and that of the _morph sample_. For the FIR filter, use a Hamming window, an order of 80, and the [appropriate cut-off frequency](file:///C:/Users/SRBN/Downloads/Cap_4-TaPDS_Ian_2019.pdf).
+     9. [Resample](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample_poly.html) the segment from step (1) with the factor given by the ratio between the FF of the _input voice_ and that of the _morph sample_. For the FIR filter, use a Hamming window, an order of 80, and the [appropriate cut-off frequency](https://electronica.curs.pub.ro/2018/pluginfile.php/31072/mod_folder/content/0/Cap_4-TaPDS_Ian_2019.pdf?forcedownload=1).
      10. Calculate the mapping indices, using equation (1) from [1].
      11. Calculate the frequency shifts, using equation (3) from [1].
      12. Calculate the gains as the ratios between the magnitudes of the _input voice_ harmonics and those of the _morph sample_ harmonics.
