@@ -49,7 +49,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
      16. Compute the [IFFT](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.ifft.html) of the spectrum obtained in step (o). This is the current frame of the newly synthesized morphed growl recording.
      17. Repeat steps (h)-(p) for the next frame obtained in step (g).
      18. Concatenate all the frames obtained in step (q). This is the newly synthesized morphed growl recording. [Write](https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.wavfile.write.html) it to disk as a _.wav_ file.
-     19. Repeat steps (a)-(f) for the next recording in the **GA* class, and steps (g)-(r) for the next one in the **CC** class. **Always make sure to use the corresponding CC and GA recordings!** You should now have 100 **GM** class recordings.
+     19. Repeat steps (a)-(f) for the next recording in the **GA** class, and steps (g)-(r) for the next one in the **CC** class. **Always make sure to use the corresponding CC and GA recordings!** You should now have 100 **GM** class recordings.
 
 3. **Features**:
    - For each audio recording in the **GA** and **GM** classes, the following processing steps will be applied:
