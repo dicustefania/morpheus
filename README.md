@@ -6,15 +6,15 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
 
 0. Set up a work environment ("[**Project setup**](https://github.com/SRBNM/morpheus/tree/master#project-setup)" section) and get the hang of the work procedure ("[**Work procedure**](https://github.com/SRBNM/morpheus/tree/master#work-procedure)" section).
 
-1. Build a database of clean singing voice and authentic [growled](https://youtu.be/4VQUZLWVo88?t=585) singing voice recordings (**CAGsDB**).
+1. Build a database of clean singing and authentic [growl](https://youtu.be/4VQUZLWVo88?t=585) singing voice recordings (**CAGsDB**).
 
 2. Implement the voice morphing algorithm (**VMA**) proposed in \[1\].
 
-3. From the authentic and morphed growled recordings, extract the features (**Features**) used for classification, according to 3 proposed feature sets.
+3. From the authentic and morphed growl recordings, extract the features (**Features**) used for classification, according to 3 proposed feature sets.
 
-4. Develop a SVM classifier (**Baseline**), to distinguish between authentic and morphed growls.
+4. Develop a SVM classifier (**Baseline**) to distinguish between authentic and morphed growl.
 
-5. Develop a deep feedforward neural network classifier (**DNN**), to distinguish between authentic and morphed growls.
+5. Develop a deep feedforward neural network classifier (**DNN**) to distinguish between authentic and morphed growl.
 
 [\[1\] J. Bonada and M. Blaauw, "Generation of growl-type voice qualities by spectral morphing," in Proc. of the 2013 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Vancouver, Canada, pp. 6910-6914, May 2013](https://ieeexplore.ieee.org/abstract/document/6639001)
 
@@ -22,7 +22,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
 
 1. **CAGsDB**:
    - The final database will contain 3 singing voice classes: Clean and Growled_A (_authentic_) + Growled_M (_morphed_).
-   - For each of the first two classes, 2 singers (the same) must be used.
+   - For each of the first two classes, 2 singers (the same for both classes) must be used.
    - For each singer, 50 sustained vocalizations ("_Aaahs_ and _Ooohs_") must be recorded (the same for both singers).
    - All files must be single-channel (_mono_) recorded at 16 kHz sampling rate, using PCM format (_.wav_), and be around 2 seconds long. For example, [Audacity](https://www.audacityteam.org/download) can be used as the recording software.
    - Each audio file should be saved using the following naming convention: **CCSVV.wav**, where **CC** is the class identifier ('CC' or 'GA'), **SS** is the singer ID number ('1' or '2') and **VV** is the vocalization ID number ('01' ... '50'); e.g: _CC123.wav_ -- Clean singing by the 1st singer, 23rd vocalization.
@@ -153,7 +153,7 @@ cd <path>
 (e.g: path = "/c/summer_project/")
 ```
 
-10. Clone (_download_) the **forked** _morpheus_ repository (_your copy_) and add a remote (_alias_) to the **original** one (_Hint:_ **origin** _is the name of the remote of_ **your** _repository_):
+10. Clone (_download_) the **forked** _morpheus_ repository (_your copy_) and add a remote (_alias_) to the **original** one (_Hint:_ **morpheus** _is the name of the remote of the_ **original** _repository and_ **origin** _is the name of the remote of_ **your** _repository_):
 ```
 git clone https://github.com/<username>/morpheus.git
 (e.g: <username> = GreuceanuSfarmafalci   <--- your GitHub account username)
