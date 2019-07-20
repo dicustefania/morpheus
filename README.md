@@ -80,7 +80,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
 5. **DNN**:
    - The proposed system will be a deep feedforward (dense) neural network using multilayer perceptrons ([MLP](https://keras.io/layers/core/)).
    - Implementation will be done using the Keras [Sequential](https://keras.io/models/sequential/) model.
-   (**_details to follow_**).
+   - (**_details to follow_**).
    - In separate trials, experiments will be done using each of the 3 feature datasets previously described.
 
 6. Other notes:
