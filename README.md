@@ -38,18 +38,18 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
      5. Implement and use [quadratic (_parabolic_) interpolation](https://ccrma.stanford.edu/~jos/sasp/Quadratic_Interpolation_Spectral_Peaks.html) to estimate the fundamental frequency (FF) and the magnitudes of the FF and of the harmonics.
      6. Implement and use [linear interpolation](https://ccrma.stanford.edu/~jos/pasp/Linear_Interpolation.html) to estimate the [phases](https://ccrma.stanford.edu/~jos/sasp/Phase_Interpolation_Peak.html) of the FF and of the harmonics from the phase spectrum.
      7. Read from the disk the first **CC** recording and divide it into 25 ms long frames, using Hamming windowing (**_input voice_**).
-     8. Repeat steps (2)-(6) for a frame obtained in step (7).
-     9. [Resample](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample_poly.html) the segment from step (1) with the factor given by the ratio between the FF of the _input voice_ and that of the _morph sample_. For the FIR filter, use a Hamming window, an order of 80, and the [appropriate cut-off frequency](https://electronica.curs.pub.ro/2018/pluginfile.php/31072/mod_folder/content/0/Cap_4-TaPDS_Ian_2019.pdf?forcedownload=1).
+     8. Repeat steps (b)-(f) for a frame obtained in step (g).
+     9. [Resample](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample_poly.html) the segment from step (a) with the factor given by the ratio between the FF of the _input voice_ and that of the _morph sample_. For the FIR filter, use a Hamming window, an order of 80, and the [appropriate cut-off frequency](https://electronica.curs.pub.ro/2018/pluginfile.php/31072/mod_folder/content/0/Cap_4-TaPDS_Ian_2019.pdf?forcedownload=1).
      10. Calculate the mapping indices, using equation (1) from [1].
      11. Calculate the frequency shifts, using equation (3) from [1].
      12. Calculate the gains as the ratios between the magnitudes of the _input voice_ harmonics and those of the _morph sample_ harmonics.
      13. Calculate the phase corrections as the ratios between the phases of the _input_ voice harmonics and those of the _morph sample_ harmonics.
      14. Apply the harmonic mapping and filtering, using equation (2) from [1].
-     15. Apply spectral mixing, using [linear interpolation](https://ccrma.stanford.edu/~jos/pasp/Linear_Interpolation.html), between the _input voice_ frame spectrum and the spectrum obtained in step (14).
-     16. Compute the [IFFT](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.ifft.html) of the spectrum obtained in step (15). This is the current frame of the newly synthesized morphed growl recording.
-     17. Repeat steps (8)-(16) for the next frame obtained in step (7).
-     18. Concatenate all the frames obtained in step (17). This is the newly synthesized morphed growl recording. [Write](https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.wavfile.write.html) it to disk as a _.wav_ file.
-     18. Repeat steps (1)-(6) for the next recording in the **GA* class, and steps (7)-(17) for the next one in the **CC** class. **Always make sure to use the corresponding CC and GA recordings!** You should now have 100 **GM** class recordings.
+     15. Apply spectral mixing, using [linear interpolation](https://ccrma.stanford.edu/~jos/pasp/Linear_Interpolation.html), between the _input voice_ frame spectrum and the spectrum obtained in step (n).
+     16. Compute the [IFFT](https://docs.scipy.org/doc/scipy/reference/generated/scipy.fftpack.ifft.html) of the spectrum obtained in step (o). This is the current frame of the newly synthesized morphed growl recording.
+     17. Repeat steps (h)-(p) for the next frame obtained in step (g).
+     18. Concatenate all the frames obtained in step (q). This is the newly synthesized morphed growl recording. [Write](https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.wavfile.write.html) it to disk as a _.wav_ file.
+     19. Repeat steps (a)-(f) for the next recording in the **GA* class, and steps (g)-(r) for the next one in the **CC** class. **Always make sure to use the corresponding CC and GA recordings!** You should now have 100 **GM** class recordings.
 
 3. **Features**:
    - For each audio recording in the **GA** and **GM** classes, the following processing steps will be applied:
