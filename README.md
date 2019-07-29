@@ -24,7 +24,8 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
    - The final database will contain 3 singing voice classes: Clean and Growled_A (_authentic_) + Growled_M (_morphed_).
    - For each of the first two classes, 2 singers (the same for both classes) must be used.
    - For each singer, 50 sustained vocalizations ("_Aaahs_ and _Ooohs_") must be recorded (the same for both singers).
-   - All files must be single-channel (_mono_) recorded at 16 kHz sampling rate, using PCM format (_.wav_), and be around 1-2 seconds long. For example, [Audacity](https://www.audacityteam.org/download) can be used as the recording software.
+   - This results in 2x2x50 = 200 recordings.
+   - All files must be single-channel (_mono_), recorded at 16 kHz sampling rate, using PCM format (_.wav_), and be around 1-2 seconds long. For example, [Audacity](https://www.audacityteam.org/download) can be used as the recording software.
    - Each audio file should be saved using the following naming convention: **CCSVV.wav**, where **CC** is the class identifier ('CC' or 'GA'), **SS** is the singer ID number ('1' or '2') and **VV** is the vocalization ID number ('01' ... '50'); e.g: _CC123.wav_ -- Clean singing by the 1st singer, 23rd vocalization.
    - For each singer, an Excel file (_.xlsx_) must be created, in which to log additional information: singer gender, age, and musical training (especially concerning growling vocals).
    - After applying the voice morphing algorithm, the processed audio data will be saved in files following the same naming convention, but with the 'GM' class identifier.
@@ -52,7 +53,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
      19. Repeat steps (a)-(f) for the next recording in the **GA** class, and steps (g)-(r) for the next one in the **CC** class. **Always make sure to use the corresponding CC and GA recordings!** You should now have 100 **GM** class recordings.
 
 3. **Features**:
-   - For each audio recording in the **GA** and **GM** classes, the following processing steps will be applied:
+   - For each audio recording in the **GA** and **GM** classes (200 instances), the following processing steps will be applied:
      - pre-processing:
        - framing: 25 ms duration, 10 ms steps
      - frame-wise feature extraction:
@@ -72,7 +73,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
    - The baseline system will consist of a [SVM](https://scikit-learn.org/stable/modules/svm.html) classifier.
    - Implementation will be done using the scikit-learn [SVC](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html) class.
    - Two hyperparameters will be adjusted during validation:
-     - the kernel function: linear and RBF (radial basis function)
+     - the kernel function: linear vs. RBF (radial basis function)
      - the C parameter (regularization parameter)
    - All other parameters will be used with their default values.
    - In separate trials, experiments will be done using each of the 3 feature datasets previously described.
