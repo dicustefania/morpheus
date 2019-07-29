@@ -23,7 +23,7 @@ Summer Python project for senior undergraduate students (2019-2020) @ ETTI, UPB.
 1. **CAGsDB**:
    - The final database will contain 3 singing voice classes: Clean and Growled_A (_authentic_) + Growled_M (_morphed_).
    - For each of the first two classes, 2 singers (the same for both classes) must be used.
-   - For each singer, 50 sustained vocalizations ("_Aaahs_ and _Ooohs_") must be recorded (the same for both singers).
+   - For each singer, 50 sustained vocalizations ("_Aaahs_ and _Ooohs_") must be recorded (**the same musical content for both singers**).
    - This results in 2x2x50 = 200 recordings.
    - All files must be single-channel (_mono_), recorded at 16 kHz sampling rate, using PCM format (_.wav_), and be around 1-2 seconds long. For example, [Audacity](https://www.audacityteam.org/download) can be used as the recording software.
    - Each audio file should be saved using the following naming convention: **CCSVV.wav**, where **CC** is the class identifier ('CC' or 'GA'), **SS** is the singer ID number ('1' or '2') and **VV** is the vocalization ID number ('01' ... '50'); e.g: _CC123.wav_ -- Clean singing by the 1st singer, 23rd vocalization.
