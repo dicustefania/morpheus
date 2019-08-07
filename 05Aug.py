@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+## -*- coding: utf-8 -*-
 """
 Created on Mon Aug  5 19:14:23 2019
 
@@ -10,30 +10,53 @@ from scipy.io import wavfile
 import os
 import numpy as np
 from numpy.fft import fft,fftfreq
+import math
 #from scipy.fftpack import fft, ifft,fftfreq
 
 os.chdir(r"C:\Users\Stefania\stefi_work")
 fs, data = wavfile.read('monster growl 2.wav')
-date=list(data)
-Ts=1.0/fs #sample period
-print(len(data.shape)) #cate canale
+print(len(data.shape))     #cate canale are intregul fisier
 
-N=data.shape[0] #esantioanele primului canal
-print(N)
+seg_time=2                 #cate sec sa aiba segment
+N=seg_time*fs              #cate esantioanele are segmentul    
+morphe_sample=data[0:N-1]
+print(len(morphe_sample))
 
-secs=N/float(fs) #durata in sec a wav file
-print(secs)
 
-t = scipy.arange(0, secs, Ts) 
-FFT = abs(scipy.fft(data))
+Ts=1.0/fs                  #sample period
+
+len_zeros=N                          #algoritm1 -aflarea celei mai apropiate mai mare putere a lui 2
+                                                #len_zeros=cea mai apropiata putere a lui 2 
+i=0
+while(2**i<len_zeros):
+    i=i+1
+len_zeros=2**i
+print(len_zeros)
+        
+morphe_sample_padded=np.append(morphe_sample,[0 for i in range(len_zeros-N)])   #zero padding la final
+    
+len_zeros=int(pow(2,ceil(math.log(N,2))))   #algoritm2-putere a lui 2
+M=len_zeros
+Mh=(M-1)/2
+for m in range(-Mh,Mh):                      #zero padding
+    if m>-N/2 and m<N/2:
+        morphe_sample_padded[m]=morphe_sample[m]
+    else:
+        morphe_sample_padded[m]=0
+
+
+print(len(morphe_sample_padded))
+
+t = scipy.arange(0, seg_time, Ts) 
+FFT = abs(scipy.fft(morphe_sample_padded))
 FFT_side = FFT[range(int(N/2))]
-freqs = scipy.fftpack.fftfreq(data.size, t[1]-t[0])
+freqs = scipy.fftpack.fftfreq(N, Ts)
 fft_freqs = np.array(freqs)
 freqs_side = freqs[range(int(N/2))] # one side frequency range
 fft_freqs_side = np.array(freqs_side)
 
 plt.subplot(311)
-p1 = plt.plot(t, data, "g") # plotting the signal
+p1 = plt.plot(t, morphe_sample_padded, "g") # plotting the signal
 plt.xlabel('Time')
 plt.ylabel('Amplitude')
 plt.subplot(312)
@@ -46,27 +69,7 @@ plt.xlabel('Frequency (Hz)')
 plt.ylabel('Count single-sided')
 plt.show()
 
-x=1
-len_morph=x*fs
-morphe_sample=data[0:len_morph-1]
-print(len(morphe_sample))
-for i in range(len_morph-1):
-    morphe_sample=np.append(morphe_sample,[data[i]])
-    #morphe_sample.append(date[i])
 
-len_zeros=len_morph
-i=0
-while(2**i<len_zeros):
-    i=i+1
-len_zeros=2**i
-print(len_zeros)
-        
-#for i in range(len_morph-1,len_zeros):
-new_morphe_sample=np.append(morphe_sample,[0 for i in range(len_morph-1,len_zeros)])
-    
-print(len(new_morphe_sample))
-##print(morphe_sample)
-#
 
 
 
